@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import userRoutes from "./routes/users"
+import todoRoutes from "./routes/todo";
 import cors from "cors";
 
 
@@ -29,7 +30,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
   });
 
   app.use(userRoutes);
-  
+  app.use(todoRoutes);
 
 app.listen(3000, () => {
     console.log('server is listening on port');

@@ -15,10 +15,13 @@ const usersSchema: Schema = new Schema(
         type: String,
         required: true
       },
-      createdAt: {
-        type: Date,
-        default: Date.now()
-      }
-    });
+     todos: [{
+       type: Schema.Types.ObjectId,
+       ref: "Todo"
+     }]
+    
+  },
+  { timestamps: true }
+    );
 
 export default model<IUsers>("Users", usersSchema);

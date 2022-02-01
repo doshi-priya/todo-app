@@ -46,7 +46,7 @@ const signUp = async (req: Request, res: Response) => {
         jwt.sign(
             payload,
             "randomString", {
-                expiresIn: 10000
+                expiresIn: 100000
             },
             (err, token) => {
                 if (err) throw err;
@@ -100,7 +100,7 @@ const login = async (req: Request, res: Response) => {
           payload,
           "randomString",
           {
-            expiresIn: 3600
+            expiresIn: 36000
           },
           (err, token) => {
             if (err) throw err;
