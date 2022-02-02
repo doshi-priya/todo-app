@@ -3,12 +3,12 @@ import { ITodo } from "../types/todo";
 import Todo from "../models/todo";
 import { IUsers } from "../types/users";
 import Users from "../models/users";
-
+//populate->read
 const getTodos = async (req: Request, res: Response): Promise<void> => {
   try {
     const username: string  = req.params.username;
-    let user  = await Users.findOne({username});
-    //console.log(user);
+    let user  = await Users.findOne({username}).populate("todos", "name description status");
+   // console.log(user);
     const todo = await user?.todos;
     // const todo: ITodo[] = await user?.todos;
      res.status(200).json({ todo});
@@ -20,7 +20,8 @@ const getTodos = async (req: Request, res: Response): Promise<void> => {
 const addTodo = async (req: Request, res: Response): Promise<void> => {
     try {
        const username: string  = req.params.username;
-     let user  = await Users.findOne({username});
+       let user  = await Users.findOne({username}).populate("todos", "name description status");
+       
 
       const body = req.body as Pick<ITodo, "name" | "description" | "status">
   
@@ -49,7 +50,7 @@ const addTodo = async (req: Request, res: Response): Promise<void> => {
   const updateTodo = async (req: Request, res: Response): Promise<void> => {
     try {
       const username: string  = req.params.username;
-      let user  = await Users.findOne({username});
+      let user  = await Users.findOne({username}).populate("todos", "name description status");
       const {
         params: { id },
         body,
@@ -73,7 +74,7 @@ const addTodo = async (req: Request, res: Response): Promise<void> => {
   const deleteTodo = async (req: Request, res: Response): Promise<void> => {
     try {
       const username: string  = req.params.username;
-      let user  = await Users.findOne({username});
+      let user  = await Users.findOne({username}).populate("todos", "name description status");
       const todo : any= user?.todos;
       const deletedTodo = await todo.findByIdAndRemove(
         req.params.id
