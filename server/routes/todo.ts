@@ -4,12 +4,12 @@ import awt from "../common/toolbox/middleware/auth";
 
 const router: Router = Router();
 
-router.get("/todos",getTodos);
+router.get("/todos", awt , getTodos);
 
-router.post("/:username/add-todo", addTodo);
+router.post("/add-todo", awt, addTodo);
 
 // router.put("/:username/edit-todo/:id", updateTodo);
 
-router.delete("/:username/delete-todo/:id", deleteTodo);
+router.delete("/delete-todo/:id", deleteTodo);
 
 export default router;

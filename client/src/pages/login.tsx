@@ -21,9 +21,9 @@ const response  = await fetch('http://localhost:4000/login', {
 
 const data = await response.json();
 if(data.user){
-   localStorage.setItem('token', data.token);
+   localStorage.setItem('token', data.user);
   alert('Login Succesful');
- // window.location.href='/todos';
+ window.location.href='/todo';
 }
 else{
   alert('Check your username and password');

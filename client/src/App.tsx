@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 //import Todo from './components/TodoItem'
 import Login from './pages/login'
 import SignUp from './pages/signup'
- import Todo from './pages/todos'
+import Todo from './pages/todo'
+import AddTodos from './pages/add-todo'
 // import Dashboard from './pages/Dashboard'
 
 const App = () => {
@@ -13,7 +14,8 @@ const App = () => {
       <Routes>
       <Route path="/login" element ={<Login/>}/> 
       <Route path="/signup" element ={<SignUp/>}/> 
-	  <Route path="/todos" element ={<Todo/>}/> 
+	  <Route path="/todo" element ={<Todo/>}/> 
+	  <Route path="/add-todo" element ={<AddTodos/>}/> 
       </Routes>	
 			</BrowserRouter>
 		</div>

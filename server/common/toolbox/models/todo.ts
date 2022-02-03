@@ -14,8 +14,8 @@ const todoSchema: Schema = new Schema(
     },
 
     status: {
-      type: Boolean,
-      required: true,
+      type: String,
+      required: false,
     },
     Owner: {
       type: Schema.Types.ObjectId,

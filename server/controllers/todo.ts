@@ -8,26 +8,23 @@ import jwt from 'jsonwebtoken';
 const getTodos = async (req: Request, res: Response) => {
   try {
    
-    const user = await Users.findById(req.user.id);
-    console.log(user);
-    console.log("hello");
-  //   let newUser  = await Users.findOne({username}).populate("todos", "name description status");
-  //  // console.log(user);
-  //   const todo = await newUser?.todos;
-  //   // const todo: ITodo[] = await user?.todos;
+    const user = await Users.findById(req.user.id).populate("todos", "name description status");
+    
+     const todo = await user?.todos;
+  
      res.status(200).json({ user});
   } catch (error) {
-    console.log("hi");
     throw error;
   }
 }
 
 const addTodo = async (req: Request, res: Response): Promise<void> => {
     try {
-       const username: string  = req.params.username;
-       let user  = await Users.findOne({username}).populate("todos", "name description status");
+      //  const username: string  = req.params.username;
+      //  let user  = await Users.findOne({username}).populate("todos", "name description status");
        
-
+      const user = await Users.findById(req.user.id);
+    
       const body = req.body as Pick<ITodo, "name" | "description" | "status">;
       
       const todo = new Todo({
@@ -36,7 +33,7 @@ const addTodo = async (req: Request, res: Response): Promise<void> => {
         status: body.status,
       })
     
-      const newTodo = todo.save();
+      todo.save();
       const test : any = user?.todos;
       test.push(todo);
       //test.save();
