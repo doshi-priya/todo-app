@@ -4,7 +4,7 @@ import awt from "../common/toolbox/middleware/auth";
 
 const router: Router = Router();
 
-router.get("/todos",awt, getTodos);
+router.get("/todos",getTodos);
 
 router.post("/:username/add-todo", addTodo);
 

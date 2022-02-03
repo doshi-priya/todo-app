@@ -20,13 +20,13 @@ const response  = await fetch('http://localhost:4000/login', {
 })
 
 const data = await response.json();
-if(data.token){
+if(data.user){
    localStorage.setItem('token', data.token);
-  alert('Login Succesfull');
-  window.location.href='http://localhost:4000/todos';
+  alert('Login Succesful');
+ // window.location.href='/todos';
 }
 else{
-  alert('Check your password and emailId');
+  alert('Check your username and password');
 }
 console.log(data);
   }

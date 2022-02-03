@@ -5,16 +5,19 @@ import { IUsers } from "../common/toolbox/types/users";
 import Users from "../common/toolbox/models/users";
 import jwt from 'jsonwebtoken';
 
-const getTodos = async (req: Request, res: Response,): Promise<void> => {
+const getTodos = async (req: Request, res: Response) => {
   try {
+   
     const user = await Users.findById(req.user.id);
     console.log(user);
+    console.log("hello");
   //   let newUser  = await Users.findOne({username}).populate("todos", "name description status");
   //  // console.log(user);
   //   const todo = await newUser?.todos;
   //   // const todo: ITodo[] = await user?.todos;
      res.status(200).json({ user});
   } catch (error) {
+    console.log("hi");
     throw error;
   }
 }

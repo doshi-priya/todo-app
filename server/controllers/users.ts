@@ -68,11 +68,7 @@ const login = async (req: Request, res: Response) => {
             errors: errors.array()
         });
     }
-    if (!errors.isEmpty()) {
-        return res.status(400).json({
-          errors: errors.array()
-        });
-      }
+ 
   
       const { username, password } = req.body;
       try {
@@ -92,23 +88,23 @@ const login = async (req: Request, res: Response) => {
   
         const payload = {
           user: {
-            id: user.id
+            id: user.id,
+            username: user.username,
+            email: user.email
           }
         };
-  
-        jwt.sign(
+  if(user){
+        const token = jwt.sign(
           payload,
           "randomString",
-          {
-            expiresIn: 36000
-          },
-          (err, token) => {
-            if (err) throw err;
-            res.status(200).json({
-              token
-            });
-          }
-        );
+        )
+      return res.json({status:'ok', user : token});
+    }
+      else{
+        return res.status(400).json({
+          message: "User Not Exist"
+        });
+      }
       }catch(error){
           throw error;
       }

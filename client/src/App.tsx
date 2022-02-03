@@ -1,7 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+//import Todo from './components/TodoItem'
 import Login from './pages/login'
 import SignUp from './pages/signup'
+ import Todo from './pages/todos'
 // import Dashboard from './pages/Dashboard'
 
 const App = () => {
@@ -11,6 +13,7 @@ const App = () => {
       <Routes>
       <Route path="/login" element ={<Login/>}/> 
       <Route path="/signup" element ={<SignUp/>}/> 
+	  <Route path="/todos" element ={<Todo/>}/> 
       </Routes>	
 			</BrowserRouter>
 		</div>

@@ -5,7 +5,7 @@ import awt from "../common/toolbox/middleware/auth";
 
 const router: Router = Router();
 
-router.get("/todos",awt, getTodos);
+//router.get("/todos", getTodos);
 router.post("/signup", signUp);
 
 router.post("/login", login);
