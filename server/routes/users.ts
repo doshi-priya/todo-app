@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { signUp , login , auth} from "../controllers/users";
-import awt from "../middleware/auth";
+import { getTodos, addTodo, deleteTodo } from "../controllers/todo";
+import awt from "../common/toolbox/middleware/auth";
 
 const router: Router = Router();
 
+router.get("/todos",awt, getTodos);
 router.post("/signup", signUp);
 
 router.post("/login", login);

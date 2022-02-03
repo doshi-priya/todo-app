@@ -2,8 +2,8 @@ import { Response, Request } from "express";
 import { check, validationResult}  from "express-validator";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
-import { IUsers } from "../types/users";
-import Users from "../models/users";
+import { IUsers } from "../common/toolbox/types/users";
+import Users from "../common/toolbox/models/users";
 
 
 const signUp = async (req: Request, res: Response) => {
@@ -74,10 +74,10 @@ const login = async (req: Request, res: Response) => {
         });
       }
   
-      const { email, password } = req.body;
+      const { username, password } = req.body;
       try {
         let user = await Users.findOne({
-          email
+          username
         });
         if (!user)
           return res.status(400).json({

@@ -29,10 +29,14 @@ app.get("/", (req: express.Request, res: express.Response) => {
     res.json({ message: "API Working" });
   });
 
+// app.post("/api/signup", (req: express.Request, res: express.Response) => {
+//     console.log(req.body);
+//     res.json({ message: "API Working" });
+//   });
   app.use(userRoutes);
   app.use(todoRoutes);
 
-app.listen(3000, () => {
+app.listen(4000, () => {
     console.log('server is listening on port');
     
 })
