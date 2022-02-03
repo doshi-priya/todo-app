@@ -23,7 +23,7 @@ const data = await response.json();
 if(data.user){
    localStorage.setItem('token', data.user);
   alert('Login Succesful');
- window.location.href='/todo';
+ window.location.href='/todos';
 }
 else{
   alert('Check your username and password');
