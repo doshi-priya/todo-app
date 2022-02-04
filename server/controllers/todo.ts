@@ -7,8 +7,9 @@ import jwt from 'jsonwebtoken';
 
 const getTodos = async (req: Request, res: Response) => {
   try {
-   
-    const todos: ITodo[] = await Todo.find()
+   const user = req.user._id;
+
+    const todos: ITodo[] = await Todo.find({Owner: user})
     res.status(200).json({ todos })
   } catch (error) {
     throw error;
