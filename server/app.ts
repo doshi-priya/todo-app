@@ -10,7 +10,7 @@ const app: Application = express();
 
 const PORT: string | number = process.env.PORT || 4000;
 
-const uri: string = "mongodb+srv://priya:priya@cluster0.dcikl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri: string = "mongodb+srv://priyad:priyad@cluster0.dcikl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose.connect(uri as string)
 .then(() => {

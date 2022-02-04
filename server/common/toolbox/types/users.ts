@@ -5,7 +5,7 @@ export interface IUsers extends Document {
   username: string;
   email: string;
   password: string;
-  todos: ITodo;
+ // todos: ITodo;
   
 }
 
