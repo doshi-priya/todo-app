@@ -1,11 +1,11 @@
 
 import axios, { AxiosResponse } from "axios"
 
-//const baseUrl: string = "http://localhost:4000"
 
-export const getTodos = async (): Promise<AxiosResponse<ApiDataType>> => {
+
+export const getTodos = async () => {
   try {
-    const todos: AxiosResponse<ApiDataType> = await axios.get(
+    const todo = await axios.get(
       'http://localhost:4000/todos', {
 headers: {
   'Content-Type': 'application/json',
@@ -14,7 +14,8 @@ headers: {
 }
       }
     )
-    return todos
+    console.log(todo);
+    return todo;
   } catch (error) {
     throw new Error(error as any)
   }
@@ -38,9 +39,49 @@ export const addTodo = async (
       },
       todo as any
     )
+    console.log(todo);
     return saveTodo
   } catch (error) {
+    console.log(error);
     throw new Error(error as any )
+  }
+}
+
+
+export const deleteTodo = async (
+  _id: string
+): Promise<AxiosResponse<ApiDataType>> => {
+  try {
+    const deletedTodo: AxiosResponse<ApiDataType> = await axios.delete(
+      `http://localhost:4000/delete-todo/${_id}`,
+      {headers: {
+        'Content-Type': 'application/json',
+        'token' : localStorage.getItem('token') as any,
+        'Accept': 'application/json'
+      }
+    }
+    )
+    return deletedTodo as any;
+  } catch (error) {
+    throw new Error(error as any)
+  }
+}
+
+export const updateTodo = async (
+  todo: ITodo
+): Promise<AxiosResponse<ApiDataType>> => {
+  try {
+    const todoUpdate: Pick<ITodo, "status"> = {
+      status: true,
+    }
+    const updatedTodo: AxiosResponse<ApiDataType> = await axios.put(
+      `$http://localhost:4000/edit-todo/${todo._id}`,
+      todoUpdate
+    )
+    console.log(updateTodo);
+    return updatedTodo
+  } catch (error) {
+    throw new Error(error as any)
   }
 }
 
@@ -66,18 +107,18 @@ export const addTodo = async (
 // }
 // export async function getTodos(){
 //   //event.preventDefault();
-// const response  = await fetch('http://localhost:4000/todos', {
+// const req = await fetch('http://localhost:4000/todos', {
 // method: 'GET',
 // headers: {
 //   'Content-Type': 'application/json',
 //   'token' : localStorage.getItem('token') as any,
 //   'Accept': 'application/json'
 // },
-// })
+// });
 
-// const data = await response.json();
+// const data = await req.json();
 
-// console.log();
+// console.log(data);
 // return data;
 
 // }

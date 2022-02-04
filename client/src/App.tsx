@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/login'
 import SignUp from './pages/signup'
 import Todos from './pages/todos'
+import './App.css'
 // import Dashboard from './pages/Dashboard'
 
 const App = () => {
