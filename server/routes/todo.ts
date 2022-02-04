@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getTodos, addTodo, deleteTodo } from "../controllers/todo";
+import { getTodos, addTodo, deleteTodo, updateTodo } from "../controllers/todo";
 import awt from "../common/toolbox/middleware/auth";
 
 const router: Router = Router();
@@ -8,8 +8,8 @@ router.get("/todos", awt , getTodos);
 
 router.post("/add-todo", awt, addTodo);
 
-// router.put("/:username/edit-todo/:id", updateTodo);
+ router.put("/edit-todo/:id",awt, updateTodo);
 
-router.delete("/delete-todo/:id", deleteTodo);
+router.delete("/delete-todo/:id", awt, deleteTodo);
 
 export default router;

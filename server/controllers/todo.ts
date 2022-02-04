@@ -77,29 +77,43 @@ const addTodo = async (req: Request, res: Response): Promise<void> => {
   //   }
   // }
 
-  const deleteTodo = async (req: Request, res: Response): Promise<void> => {
+  const updateTodo = async (req: Request, res: Response): Promise<void> => {
     try {
-      const username: string  = req.params.username;
-      let user  = await Users.findOne({username}).populate("todos", "name description status");
-      const todo : any= user?.todos;
-      // const deletedTodo = await todo.findByIdAndRemove(
-      //   req.params.id
-      // )
-      const id = req.params.id;
-      //let obj = todo.find((o: { _id: string; }) => o._id === id);
-      todo.splice(todo.findIndex((a: { id: string; }) => a.id === id) , 1)
-      user?.save();
-      const allTodos = await user?.todos;
-
+      const {
+        params: { id },
+        body,
+      } = req
+      const updateTodo: ITodo | null = await Todo.findByIdAndUpdate(
+        { _id: id },
+        body
+      )
+      const allTodos: ITodo[] = await Todo.find()
       res.status(200).json({
-        message: "Todo deleted",
+        message: "Todo updated",
+        todo: updateTodo,
         todos: allTodos,
       })
     } catch (error) {
       throw error
     }
   }
+
+  const deleteTodo = async (req: Request, res: Response): Promise<void> => {
+    try{
+    const deletedTodo: ITodo | null = await Todo.findByIdAndRemove(
+      req.params.id
+    )
+    const allTodos: ITodo[] = await Todo.find()
+    res.status(200).json({
+      message: "Todo deleted",
+      todo: deletedTodo,
+      todos: allTodos,
+    })
+  } catch (error) {
+    throw error
+  }
+}
   
-  export { getTodos, addTodo, deleteTodo }
+  export { getTodos, addTodo, deleteTodo, updateTodo }
 
 
